@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.kletto.bot_tutorial.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_tutorialFragment"
+            app:destination="@id/tutorialFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_levelFragment"
+            app:destination="@id/levelFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tutorialFragment"
+        android:name="com.kletto.bot_tutorial.TutorialFragment"
+        android:label="fragment_tutorial"
+        tools:layout="@layout/fragment_tutorial" >
+        <action
+            android:id="@+id/action_tutorialFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_tutorialFragment_to_tutorial1Fragment"
+            app:destination="@id/tutorial1Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelFragment"
+        android:name="com.kletto.bot_tutorial.LevelFragment"
+        android:label="fragment_level"
+        tools:layout="@layout/fragment_level" >
+        <action
+            android:id="@+id/action_levelFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tutorial1Fragment"
+        android:name="com.kletto.bot_tutorial.Tutorial1Fragment"
+        android:label="fragment_tutorial1"
+        tools:layout="@layout/fragment_tutorial1" >
+        <action
+            android:id="@+id/action_tutorial1Fragment_to_level1Fragment"
+            app:destination="@id/level1Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/level1Fragment"
+        android:name="com.kletto.bot_tutorial.Level1Fragment"
+        android:label="fragment_level1"
+        tools:layout="@layout/fragment_level1" >
+        <action
+            android:id="@+id/action_level1Fragment_to_tutorial1Fragment"
+            app:destination="@id/tutorial1Fragment" />
+    </fragment>
+</navigation>
