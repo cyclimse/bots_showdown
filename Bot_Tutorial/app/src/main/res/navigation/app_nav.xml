@@ -16,6 +16,7 @@
         <action
             android:id="@+id/action_homeFragment_to_levelFragment"
             app:destination="@id/levelFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/tutorialFragment"
@@ -37,6 +38,9 @@
         <action
             android:id="@+id/action_levelFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_levelFragment_to_level1Fragment"
+            app:destination="@id/level1Fragment" />
     </fragment>
     <fragment
         android:id="@+id/tutorial1Fragment"
@@ -56,4 +60,8 @@
             android:id="@+id/action_level1Fragment_to_tutorial1Fragment"
             app:destination="@id/tutorial1Fragment" />
     </fragment>
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.kletto.bot_tutorial.HomeActivity"
+        android:label="HomeActivity" />
 </navigation>
