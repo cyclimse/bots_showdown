@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.kletto.bot_tutorial.HomeFragment"
+        android:name="com.kletto.bot_tutorial.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/tutorialFragment"
-        android:name="com.kletto.bot_tutorial.TutorialFragment"
+        android:name="com.kletto.bot_tutorial.fragments.TutorialFragment"
         android:label="fragment_tutorial"
         tools:layout="@layout/fragment_tutorial" >
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/levelFragment"
-        android:name="com.kletto.bot_tutorial.LevelFragment"
+        android:name="com.kletto.bot_tutorial.fragments.LevelFragment"
         android:label="fragment_level"
         tools:layout="@layout/fragment_level" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/tutorial1Fragment"
-        android:name="com.kletto.bot_tutorial.Tutorial1Fragment"
+        android:name="com.kletto.bot_tutorial.fragments.Tutorial1Fragment"
         android:label="fragment_tutorial1"
         tools:layout="@layout/fragment_tutorial1" >
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/level1Fragment"
-        android:name="com.kletto.bot_tutorial.Level1Fragment"
+        android:name="com.kletto.bot_tutorial.fragments.Level1Fragment"
         android:label="fragment_level1"
         tools:layout="@layout/fragment_level1" >
         <action

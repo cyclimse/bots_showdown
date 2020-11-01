@@ -1,6 +1,8 @@
 package com.kletto.bot_tutorial
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -15,33 +17,35 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import com.google.android.material.button.MaterialButton
+import android.widget.TextView as TextView
 
 class HomeActivity : AppCompatActivity() {
     lateinit var navController: NavController
+    private lateinit var code : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+
+
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(toolbar)
         navController = findNavController(R.id.fragment2)
-        toolbar?.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_menu_call)
+        toolbar?.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_baseline_home_24)
         toolbar?.setNavigationOnClickListener {
-            val popupMenu: PopupMenu = PopupMenu(this,toolbar)
-            popupMenu.menuInflater.inflate(R.menu.drawer_view,popupMenu.menu)
-            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
-
-                true
-            })
-            popupMenu.show()
+            navController.navigateUp()
         }
 
+
     }
+
+    /*
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.drawer_view, menu)
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
-    }
+    }*/
 
 }

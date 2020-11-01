@@ -5,14 +5,14 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.button.MaterialButton
+import com.kletto.bot_tutorial.models.OnboardingItem
+import com.kletto.bot_tutorial.onboarding.OnboardingAdapter
 
 class OnboardingActivity : AppCompatActivity() {
 

@@ -1,13 +1,15 @@
-package com.kletto.bot_tutorial;
+package com.kletto.bot_tutorial.onboarding;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.kletto.bot_tutorial.R;
+import com.kletto.bot_tutorial.models.OnboardingItem;
 
 import java.util.List;
 

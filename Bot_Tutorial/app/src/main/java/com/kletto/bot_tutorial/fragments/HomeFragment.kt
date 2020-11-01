@@ -1,4 +1,4 @@
-package com.kletto.bot_tutorial
+package com.kletto.bot_tutorial.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.google.android.material.button.MaterialButton
+import com.kletto.bot_tutorial.R
 
 
 class HomeFragment : Fragment() {

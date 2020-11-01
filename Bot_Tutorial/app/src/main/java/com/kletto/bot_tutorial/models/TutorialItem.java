@@ -1,17 +1,8 @@
-package com.kletto.bot_tutorial;
+package com.kletto.bot_tutorial.models;
 
-public class OnboardingItem {
-    private int image;
+public class TutorialItem {
     private String title;
     private String description;
-
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
-    }
 
     public String getTitle() {
         return title;

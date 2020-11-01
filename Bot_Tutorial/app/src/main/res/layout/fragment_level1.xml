@@ -5,25 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".Level1Fragment">
+    tools:context=".fragments.Level1Fragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
     >
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="91dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="15dp"
-            android:text="Level one"
-            android:gravity="center"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </TextView>
 
         <TextView
             android:id="@+id/correctItem"
@@ -34,9 +20,10 @@
             android:layout_marginBottom="24dp"
             android:gravity="center"
             android:text="move_forward"
+            android:tag="@string/level_1_code_1"
             android:background="@color/colorPrimary"
             app:layout_constraintBottom_toTopOf="@+id/notcorrectItem"
-            app:layout_constraintEnd_toStartOf="@+id/textInputLayout"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_last"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -51,28 +38,62 @@
             android:text="move_forward"
             android:background="@color/colorPrimaryDark"
             app:layout_constraintBottom_toTopOf="@+id/back_to_tutorial"
-            app:layout_constraintEnd_toStartOf="@+id/textInputLayout"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_last"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            android:layout_width="260dp"
-            android:layout_height="388dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="10dp"
+        <TextView
+            android:id="@+id/last_part_of_code"
+            android:layout_width="237dp"
+            android:layout_height="117dp"
+            android:layout_marginEnd="12dp"
             android:gravity="center"
+            android:text=""
+            android:background="@color/colorOnboardingIndicatorInactive"
+            app:layout_constraintBottom_toTopOf="@+id/text_view_last"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/first_part_of_code" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorEditor">
+        <TextView
+            android:id="@+id/first_part_of_code"
+            android:layout_width="237dp"
+            android:layout_height="117dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/colorEditor"
+            android:gravity="bottom"
+            android:lines="2"
+            android:text="run = (\n
+            [ true ] whileTrue: ["
+            app:layout_constraintBottom_toTopOf="@+id/last_part_of_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            </com.google.android.material.textfield.TextInputEditText>
+        <TextView
+            android:id="@+id/text_view_last"
+            android:layout_width="237dp"
+            android:layout_height="117dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/colorEditor"
+            android:gravity="top"
+            android:lines="2"
+            android:text="            ].\n)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/last_part_of_code" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="91dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="28dp"
+            android:gravity="center"
+            android:text="Level one"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
         <Button
             android:id="@+id/compile"
             android:layout_width="wrap_content"
@@ -92,7 +113,7 @@
             android:layout_marginStart="33dp"
             android:layout_marginEnd="285dp"
             android:layout_marginBottom="33dp"
-            android:text="Compile"
+            android:text="Tutorial"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

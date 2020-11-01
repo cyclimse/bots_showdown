@@ -1,4 +1,4 @@
-package com.kletto.bot_tutorial
+package com.kletto.bot_tutorial.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.Navigation
 import com.google.android.material.button.MaterialButton
+import com.kletto.bot_tutorial.R
+import com.kletto.bot_tutorial.models.TutorialItem
 
 class Tutorial1Fragment : Fragment() {
 
