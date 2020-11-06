@@ -1,4 +1,4 @@
-package com.kletto.bot_tutorial.fragments
+package com.kletto.bot_tutorial.fragments.levels
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,10 +18,17 @@ class LevelFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_level, container, false)
 
-        view.findViewById<MaterialButton>(R.id.level2).setOnClickListener{
+        view.findViewById<MaterialButton>(R.id.level1).setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_levelFragment_to_level1Fragment)
         }
 
+        view.findViewById<MaterialButton>(R.id.level2).setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_levelFragment_to_level2Fragment)
+        }
+
+        view.findViewById<MaterialButton>(R.id.level3).setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_levelFragment_to_level3Fragment)
+        }
 
         return view
     }

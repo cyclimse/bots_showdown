@@ -83,13 +83,13 @@ class OnboardingActivity : AppCompatActivity() {
         overview.description = "Bot Showdown is an app made to help individuals that want to learn programming.\n " + "\n" +
                 "Once you open the app you will be presented with tutorials for how to write a small program in the programming language SmallTalk.\n " + "\n" +
                 "finish a tutorial and then try your luck against the evil robot lord Galactus"
-        overview.image = R.drawable.place_holder
+        overview.image = R.drawable.logo
 
         val tutorials = OnboardingItem()
         tutorials.title = "The tutorials"
         tutorials.description = "Before each level you will be presented with a tutorial to help you get through the levels.\n" + "\n" +
                 "Go through the tutorial and try to beat Galactus!"
-        tutorials.image = R.drawable.place_holder
+        tutorials.image = R.drawable.logo
 
         val levels = OnboardingItem()
         levels.title = "The levels"
@@ -98,7 +98,7 @@ class OnboardingActivity : AppCompatActivity() {
                 "each level will get incrementally more difficult as you progress so it's important you get a good base to build upon! \n" +
                 "\n" +
                 "thank you for downloading Bot Showdown, and good luck in your fight againt Galactus\n"
-        levels.image = R.drawable.place_holder
+        levels.image = R.drawable.logo
 
         onboardingItems.add(overview)
         onboardingItems.add(tutorials)

@@ -1,80 +1,19 @@
-package com.kletto.bot_tutorial.fragments
+package com.kletto.bot_tutorial.fragments.levels
 
 import android.content.ClipData
 import android.content.ClipDescription
-import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import android.os.Bundle
 import android.view.DragEvent
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.google.android.material.button.MaterialButton
-import com.kletto.bot_tutorial.R
 
-class Level1Fragment : Fragment() {
+class DragAndDrop() {
 
-    lateinit var itemToDrag : TextView
-    lateinit var dragTo : TextView
-    //lateinit var sharedPref : SharedPreferences
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_level1, container, false)
-
-        val sharedPref = this.requireActivity().getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-
-
-        val code = sharedPref.getString("USER_CODE", "").toString()
-        if (code != ""){
-            view.findViewById<TextView>(R.id.last_part_of_code).text = code
-        }
-
-        val compile: MaterialButton
-        compile = view.findViewById(R.id.compile)
-
-        compile.setOnClickListener{
-            val textFieldCode = view.findViewById<TextView>(R.id.last_part_of_code).text.toString()
-            if (textFieldCode == ""){
-                val toast = Toast.makeText(this.context, code, Toast.LENGTH_LONG)
-                toast.show()
-            }else{
-                val editor: SharedPreferences.Editor = sharedPref.edit()
-                editor.putString("USER_CODE", textFieldCode)
-                editor.apply()
-            }
-        }
-
-        itemToDrag = view.findViewById(R.id.correctItem)
-        dragTo = view.findViewById(R.id.last_part_of_code)
-
-        dragTo.setOnDragListener(onDragListener)
-
-        itemToDrag.setOnLongClickListener(onLongClickListener)
-
-        view.findViewById<MaterialButton>(R.id.back_to_tutorial).setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_level1Fragment_to_tutorial1Fragment)
-        }
-
-
-        return view
-    }
-
-
-
-    private val onLongClickListener = View.OnLongClickListener { view: View ->
+    public val onLongClickListener = View.OnLongClickListener { view: View ->
         (view as? TextView)?.let {
 
             // First we create the `ClipData.Item` that we will need for the `ClipData`.
@@ -86,9 +25,9 @@ class Level1Fragment : Fragment() {
             // We create a `ClipData` for the drag action and save the color as plain
             // text using `ClipDescription.MIMETYPE_TEXT_PLAIN`.
             val dragData = ClipData(
-                    it.tag as? CharSequence,
-                    arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN),
-                    item)
+                it.tag as? CharSequence,
+                arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN),
+                item)
 
             // Instantiates the drag shadow builder, which is the class we will use
             // to draw a shadow of the dragged object. The implementation details
@@ -109,7 +48,7 @@ class Level1Fragment : Fragment() {
         false
     }
 
-    private val onDragListener = View.OnDragListener { view, dragEvent ->
+    public val onDragListener = View.OnDragListener { view, dragEvent ->
         (view as? TextView)?.let {
             when (dragEvent.action) {
                 // Once the drag event has started, we elevate all the views that are listening.
@@ -134,7 +73,7 @@ class Level1Fragment : Fragment() {
                     // Read color data from the clip data and apply it to the card view background.
                     val item: ClipData.Item = dragEvent.clipData.getItemAt(0)
                     val value = item.text
-                    it.text = value
+                    it.append(value)
                     return@OnDragListener true
                 }
                 // Once the drag has ended, revert card views to the default elevation.
@@ -146,10 +85,6 @@ class Level1Fragment : Fragment() {
         }
         false
     }
-
-
-
-
 }
 
 private class MyDragShadowBuilder(v: View) : View.DragShadowBuilder(v) {
