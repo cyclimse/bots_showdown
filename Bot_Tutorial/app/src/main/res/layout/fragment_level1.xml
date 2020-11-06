@@ -97,8 +97,8 @@
             android:background="@color/colorEditor"
             android:gravity="bottom"
             android:lines="2"
-            android:text="run = (\n
-            [ true ] whileTrue: ["
+            android:text="|i| \n run = (\n i := 0. \n
+            [ i &lt; 100  ] whileTrue: ["
             app:layout_constraintBottom_toTopOf="@+id/last_part_of_code"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -111,7 +111,7 @@
             android:background="@color/colorEditor"
             android:gravity="top"
             android:lines="2"
-            android:text="            ].\n)"
+            android:text=" i := i+1. ].\n)"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/last_part_of_code" />
 

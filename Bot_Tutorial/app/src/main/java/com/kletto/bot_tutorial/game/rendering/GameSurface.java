@@ -1,6 +1,7 @@
 package com.kletto.bot_tutorial.game.rendering;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -12,6 +13,9 @@ import android.text.TextPaint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import androidx.navigation.Navigation;
+
+import com.kletto.bot_tutorial.GameActivity;
 import com.kletto.bot_tutorial.R;
 import com.kletto.bot_tutorial.game.shared.BotDrawable;
 import com.kletto.bot_tutorial.game.shared.DummyStrategy;
@@ -27,6 +31,8 @@ import org.dyn4j.world.World;
 import java.util.Vector;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static java.lang.Integer.parseInt;
 
 public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -48,13 +54,25 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     private static AtomicInteger xpos = new AtomicInteger();
     private static AtomicInteger ypos = new AtomicInteger();
 
+    String codeIndex;
 
-    public GameSurface(Context context) {
-        super(context);
+    private boolean hasWon;
+    private long ticksAfterVictory;
+
+    private GameActivity activity;
+
+    public GameSurface(GameActivity context, String codeIndex) {
+        super((Context) context);
+
+        this.activity = context;
 
         this.setFocusable(true);
 
         this.getHolder().addCallback(this);
+
+        this.codeIndex = codeIndex;
+        this.hasWon = false;
+        this.ticksAfterVictory = 0;
     }
 
     public static void receiveInput(long powerLeft, long powerRight) {
@@ -94,6 +112,10 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
 
+        if (ticksAfterVictory > 60) {
+                activity.finish();
+        }
+
         Vector2 impulseRight = botDrawable.getWorldPoint(new Vector2(0, botDrawable.getHeight()));
         Vector2 impulseLeft = botDrawable.getWorldPoint(new Vector2(0, -botDrawable.getHeight()));
         botDrawable.applyImpulse(new Vector2(1,0).rotate(botDrawable.getAngle()).multiply(100000*powerLeft.get()), impulseLeft);
@@ -102,8 +124,25 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         opponent.applyStrategy();
 
         world.step(1,  0.01);
+
         botDrawable.setAngularVelocity(0);
         opponent.setAngularVelocity(0);
+
+        this.angle.set((int) botDrawable.getAngle());
+
+        if (ticksAfterVictory < 1 && !isInsideArena(botDrawable)) {
+            ticksAfterVictory = 1;
+            return;
+        } else if (ticksAfterVictory < 1 && !isInsideArena(opponent)) {
+            hasWon = true;
+            ticksAfterVictory = 1;
+            return;
+        }
+
+        if (ticksAfterVictory > 0) {
+            ticksAfterVictory++;
+        }
+
 
     }
 
@@ -114,36 +153,56 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         Paint paint = new Paint();
         paint.setColor(getResources().getColor(R.color.colorAccent));
 
+        Paint background = new Paint();
+        background.setColor(getResources().getColor(R.color.colorBackground));
+        canvas.drawPaint(background);
+
         TextPaint textPaint = new TextPaint();
         textPaint.setAntiAlias(true);
-        textPaint.setTextSize(16 * getResources().getDisplayMetrics().density);
-        textPaint.setColor(getResources().getColor(R.color.colorAccent));
+        textPaint.setTextSize(30 * getResources().getDisplayMetrics().density);
+        textPaint.setColor(getResources().getColor(R.color.colorPrimary));
 
         canvas.drawCircle((float) arenaCenter.x, (float) arenaCenter.y, (float) arenaRadius, paint);
         botDrawable.draw(canvas);
         opponent.draw(canvas);
 
-        if (!isInsideArena(botDrawable)) {
-            String text = "You lose!";
+        if (ticksAfterVictory > 0) {
+            String text;
+            if (hasWon) {
+                text = "You have won!";
+            } else {
+                text = "You have lost!";
+            }
             int width = (int) textPaint.measureText(text);
             StaticLayout staticLayout = new StaticLayout(text, textPaint, (int) width, Layout.Alignment.ALIGN_CENTER, 1.0f, 0, false);
+            canvas.save();
+            canvas.translate(this.getWidth()/4F, this.getHeight()/8F);
             staticLayout.draw(canvas);
+            canvas.restore();
         }
 
-        if (!isInsideArena(opponent)) {
-            String text = "You win!";
-            int width = (int) textPaint.measureText(text);
-            StaticLayout staticLayout = new StaticLayout(text, textPaint, (int) width, Layout.Alignment.ALIGN_CENTER, 1.0f, 0, false);
-            staticLayout.draw(canvas);
-        }
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
 
         Bitmap botSprite = BitmapFactory.decodeResource(this.getResources(), R.drawable.bot);
+        Bitmap oppSprite = BitmapFactory.decodeResource(this.getResources(), R.drawable.opponent);
+
         this.botDrawable = new BotDrawable(this, botSprite, 90, this.getWidth()/2, this.getHeight()/3);
-        this.opponent = new Opponent(this, new DummyStrategy(), botSprite, -90, this.getWidth()/2, (2*this.getHeight())/3);
+
+        int index = Integer.parseInt(codeIndex.substring(codeIndex.length()-1));
+        switch (index) {
+            case 1:
+                this.opponent = new Opponent(this, new DummyStrategy(20), oppSprite, -90, this.getWidth()/2, (2*this.getHeight())/3);
+                break;
+            case 2:
+                this.opponent = new Opponent(this, new DummyStrategy(150), oppSprite, -90, this.getWidth()/2, (2*this.getHeight())/3);
+                break;
+            default:
+                this.opponent = new Opponent(this, new DummyStrategy(100), oppSprite, -90, this.getWidth()/2, (2*this.getHeight())/3);
+                break;
+        }
 
         arenaCenter = new Vector2(this.getWidth() >> 1, this.getHeight() >> 1);
         arenaRadius = (3/8F)*this.getWidth();
@@ -166,16 +225,11 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        boolean retry = true;
-        while (retry) {
-            try {
-                this.gameThread.setRunning(false);
-
-                this.gameThread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            retry = true;
+        this.gameThread.setRunning(false);
+        try {
+            this.gameThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

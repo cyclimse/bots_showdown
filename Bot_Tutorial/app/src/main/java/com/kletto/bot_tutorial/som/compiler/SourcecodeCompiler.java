@@ -53,14 +53,11 @@ public class SourcecodeCompiler {
       final SClass systemClass, final Universe universe)
       throws IOException, ProgramDefinitionError {
 
-    if (file.toLowerCase().startsWith("userscript")) {
+    if (file.toLowerCase().startsWith("user")) {
       parser = new Parser(universe.getUserScript(file), universe, "");
     } else {
-
       String loweredFile = '_' + file.toLowerCase();
       String fname = path + Universe.fileSeparator + loweredFile + ".som";
-
-      System.out.println(fname);
 
       parser = new Parser(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(fname)), universe, fname);
     }

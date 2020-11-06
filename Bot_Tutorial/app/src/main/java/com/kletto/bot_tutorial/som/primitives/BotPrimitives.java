@@ -53,7 +53,7 @@ public class BotPrimitives extends Primitives {
             @Override
             public void invoke(final Frame frame, final Interpreter interpreter) {
                 SObject self = (SObject) frame.pop();
-                //frame.push(universe.newDouble(Math.toDegrees(Engine.getInstance().getPlayer().getAngle())));
+                frame.push(universe.newDouble(Math.toDegrees(GameSurface.getAngle())));
             }
 
         });
