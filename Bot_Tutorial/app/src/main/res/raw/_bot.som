@@ -1,0 +1,10 @@
+Bot = (
+
+    x = primitive
+    y = primitive
+    angle = primitive
+
+    powerLeft: left powerRight: right = primitive
+
+
+)

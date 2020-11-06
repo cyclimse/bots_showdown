@@ -1,9 +1,6 @@
 package com.kletto.bot_tutorial.fragments
 
-import android.content.ClipData
-import android.content.ClipDescription
-import android.content.Context
-import android.content.SharedPreferences
+import android.content.*
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Point
@@ -19,7 +16,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.google.android.material.button.MaterialButton
+import com.kletto.bot_tutorial.GameActivity
 import com.kletto.bot_tutorial.R
+
 
 class Level1Fragment : Fragment() {
 
@@ -55,6 +54,8 @@ class Level1Fragment : Fragment() {
                 editor.putString("USER_CODE", textFieldCode)
                 editor.apply()
             }
+            val intent = Intent(activity, GameActivity::class.java)
+            startActivity(intent)
         }
 
         itemToDrag = view.findViewById(R.id.correctItem)
