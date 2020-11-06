@@ -194,7 +194,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         int index = Integer.parseInt(codeIndex.substring(codeIndex.length()-1));
         switch (index) {
             case 1:
-                this.opponent = new Opponent(this, new DummyStrategy(20), oppSprite, -90, this.getWidth()/2, (2*this.getHeight())/3);
+                this.opponent = new Opponent(this, new DummyStrategy(0), oppSprite, -90, this.getWidth()/2, (2*this.getHeight())/3);
                 break;
             case 2:
                 this.opponent = new Opponent(this, new DummyStrategy(150), oppSprite, -90, this.getWidth()/2, (2*this.getHeight())/3);
