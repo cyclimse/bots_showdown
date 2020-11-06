@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".fragments.levels.Level1Fragment">
+    tools:context=".fragments.levels.Level2Fragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    >
+        >
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -33,7 +33,7 @@
                 android:text="Commands: " />
 
             <TextView
-                android:id="@+id/correctItem"
+                android:id="@+id/command_forward"
                 android:layout_width="91dp"
                 android:layout_height="46dp"
                 android:layout_below="@id/commands"
@@ -47,10 +47,10 @@
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/notcorrectItem"
+                android:id="@+id/command_right"
                 android:layout_width="91dp"
                 android:layout_height="46dp"
-                android:layout_below="@id/correctItem"
+                android:layout_below="@id/command_forward"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="24dp"
@@ -62,10 +62,10 @@
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/notcorrectItem2"
+                android:id="@+id/command_left"
                 android:layout_width="91dp"
                 android:layout_height="46dp"
-                android:layout_below="@id/notcorrectItem"
+                android:layout_below="@id/command_right"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="61dp"
@@ -75,6 +75,16 @@
                 android:text="turn_left"
                 android:textColor="@color/white" />
         </RelativeLayout>
+
+        <EditText
+            android:id="@+id/power_to_bot"
+            android:layout_width="35dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="11dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/input_power"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
         <TextView
             android:id="@+id/last_part_of_code"
@@ -121,7 +131,7 @@
             android:layout_height="46dp"
             android:layout_marginTop="28dp"
             android:gravity="center"
-            android:text="Level one"
+            android:text="Level Two"
             android:textSize="22dp"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -162,6 +172,27 @@
             android:text="Clear"
             app:layout_constraintEnd_toStartOf="@+id/text_view_last"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+        <TextView
+            android:id="@+id/input_power"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="17dp"
+            android:text="Power:"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+        <Button
+            android:id="@+id/change_power"
+            android:layout_width="58dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:text="go"
+            app:layout_constraintStart_toEndOf="@+id/power_to_bot"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

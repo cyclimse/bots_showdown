@@ -6,5 +6,7 @@
     <string name="title_notifications">Levels</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="level_1_code_1">bot powerLeft: 80 powerRight: 80.</string>
+    <string name="level_1_command_1">bot powerLeft: 80 powerRight: 80.</string>
+    <string name="level_1_command_2">[bot angle &lt;  45 ] whileTrue: [ bot powerLeft: 100 powerRight: 0. ].</string>
+    <string name="level_1_command_3">[45 &lt;  bot angle ] whileTrue: [ bot powerLeft: 0 powerRight: 100. ].</string>
 </resources>

@@ -3,6 +3,7 @@ package com.kletto.bot_tutorial.onboarding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,16 +45,19 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.On
     class OnboardingViewHolder extends RecyclerView.ViewHolder {
         private TextView textTitle;
         private TextView textDescription;
+        private ImageView image;
 
         OnboardingViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.textTitle);
             textDescription = itemView.findViewById(R.id.textDescription);
+            image = itemView.findViewById(R.id.logo_onboarding);
         }
 
         void setOnboardingData(OnboardingItem onboardingItem){
             textTitle.setText(onboardingItem.getTitle());
             textDescription.setText(onboardingItem.getDescription());
+            image.setImageResource(onboardingItem.getImage());
         }
     }
 }

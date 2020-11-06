@@ -7,6 +7,16 @@
     android:layout_height="match_parent">
 
     <Button
+        android:id="@+id/tutorial2"
+        android:layout_width="343dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:text="tutorial 2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tutorial1" />
+
+    <Button
         android:id="@+id/tutorial1"
         android:layout_width="343dp"
         android:layout_height="48dp"
@@ -17,20 +27,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/tutorial2"
+        android:id="@+id/tutorial3"
         android:layout_width="343dp"
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
-        android:text="tutorial 2"
+        android:text="tutorial 3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tutorial1" />
+        app:layout_constraintTop_toBottomOf="@+id/tutorial2" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tutorials"
+        android:textSize="22dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/tutorial1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -33,19 +33,9 @@ class HomeActivity : AppCompatActivity() {
         navController = findNavController(R.id.fragment2)
         toolbar?.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_baseline_home_24)
         toolbar?.setNavigationOnClickListener {
-            navController.navigateUp()
+            navController.navigate(R.id.action_global_homeFragment)
         }
-
-
     }
 
-    /*
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.drawer_view, menu)
-        return true
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
-    }*/
 
 }
