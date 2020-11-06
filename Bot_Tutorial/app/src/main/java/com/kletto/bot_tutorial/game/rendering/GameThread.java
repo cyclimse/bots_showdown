@@ -19,6 +19,7 @@ public class GameThread extends Thread {
 
     @Override
     public void run() {
+
         long startTime = System.nanoTime();
 
         while(isRunning) {
@@ -27,6 +28,7 @@ public class GameThread extends Thread {
                 canvas = this.surfaceHolder.lockCanvas();
 
                 synchronized (canvas) {
+                    long now = System.nanoTime();
                     this.gameSurface.update();
                     this.gameSurface.draw(canvas);
                 }
@@ -46,7 +48,7 @@ public class GameThread extends Thread {
             try {
                 this.sleep(sleepTime);
             } catch (InterruptedException e) {
-
+                isRunning = false;
             }
             startTime = System.nanoTime();
         }

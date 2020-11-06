@@ -634,7 +634,6 @@ public class Universe {
 
     // Load primitives (if necessary) and return the resulting class
     if (result != null && result.hasPrimitives()) {
-      System.out.println("toto");
       result.loadPrimitives();
     }
 
@@ -694,7 +693,15 @@ public class Universe {
   }
 
   public Reader getUserScript(final String file) {
-    return new StringReader(this.sharedPreferences.getString(file, ""));
+    String script = this.sharedPreferences.getString(file, "");
+    String formattedScript;
+    System.out.println(script);
+    if (!script.startsWith(file)) {
+      formattedScript = file + "=(" + script + ")";
+      return new StringReader(formattedScript);
+    } else {
+      return new StringReader(script);
+    }
   }
 
   public static void errorPrint(final String msg) {

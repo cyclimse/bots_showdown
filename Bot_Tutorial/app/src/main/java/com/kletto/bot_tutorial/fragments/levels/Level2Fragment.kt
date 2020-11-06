@@ -1,6 +1,7 @@
 package com.kletto.bot_tutorial.fragments.levels
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.google.android.material.button.MaterialButton
+import com.kletto.bot_tutorial.GameActivity
 import com.kletto.bot_tutorial.R
 import com.kletto.bot_tutorial.fragments.levels.DragAndDrop as DragAndDrop
 
@@ -60,13 +62,19 @@ class Level2Fragment : Fragment() {
         compile.setOnClickListener {
             val textFieldCode = view.findViewById<TextView>(R.id.last_part_of_code).text.toString()
             if (textFieldCode == "") {
-
             } else {
                 val editor: SharedPreferences.Editor = sharedPref.edit()
                 sharedPref.edit().remove("USER_CODE2").commit();
                 editor.putString("USER_CODE2", textFieldCode)
                 editor.apply()
             }
+            val editor =  this.requireActivity().getSharedPreferences("scripts", Context.MODE_PRIVATE).edit()
+            val totalCode = view.findViewById<TextView>(R.id.first_part_of_code).text.toString() + "\n" +  textFieldCode + "\n" + view.findViewById<TextView>(R.id.text_view_last).text.toString();
+            editor.putString("USER_SCRIPT2", totalCode)
+            editor.apply()
+            val intent = Intent(activity, GameActivity::class.java)
+            intent.putExtra("codeIndex", "USER_SCRIPT2");
+            startActivity(intent)
         }
 
         forwardCommand = view.findViewById(R.id.command_forward)

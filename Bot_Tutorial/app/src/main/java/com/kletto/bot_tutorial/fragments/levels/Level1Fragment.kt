@@ -1,18 +1,9 @@
 package com.kletto.bot_tutorial.fragments.levels
 
-import android.content.ClipData
-import android.content.ClipDescription
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Point
-import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
-import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.google.android.material.button.MaterialButton
+import com.kletto.bot_tutorial.GameActivity
 import com.kletto.bot_tutorial.R
 
 class Level1Fragment : Fragment() {
@@ -61,13 +53,19 @@ class Level1Fragment : Fragment() {
         compile.setOnClickListener {
             val textFieldCode = view.findViewById<TextView>(R.id.last_part_of_code).text.toString()
             if (textFieldCode == "") {
-
             } else {
                 val editor: SharedPreferences.Editor = sharedPref.edit()
-                sharedPref.edit().remove("USER_CODE").commit();
+                sharedPref.edit().remove("USER_CODE").apply();
                 editor.putString("USER_CODE", textFieldCode)
                 editor.apply()
             }
+            val editor =  this.requireActivity().getSharedPreferences("scripts", Context.MODE_PRIVATE).edit()
+            val totalCode = view.findViewById<TextView>(R.id.first_part_of_code).text.toString() + "\n" +  textFieldCode + "\n" + view.findViewById<TextView>(R.id.text_view_last).text.toString();
+            editor.putString("USER_SCRIPT1", totalCode)
+            editor.apply()
+            val intent = Intent(activity, GameActivity::class.java)
+            intent.putExtra("codeIndex", "USER_SCRIPT1");
+            startActivity(intent)
         }
 
         forwardCommand = view.findViewById(R.id.correctItem)
